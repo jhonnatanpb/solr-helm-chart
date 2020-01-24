@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: identity-test-deploy
+  namespace: c360congruity
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: identitytestserver
+  template:
+    metadata:
+      labels:
+        app: identitytestserver
+    spec:
+      containers:
+      - name: identitytestserver
+        image: c360saascr.azurecr.io/identityserver
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: c360registrysecret3
